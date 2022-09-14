@@ -1,13 +1,13 @@
 package Tree;
 
 public class Leaf extends Node {
-    protected final Object caractere;
+    protected final char caractere;
 
-    public Object getCaractere() {
+    public char getCaractere() {
         return caractere;
     }
 
-    public Leaf(Object caractere, int frequencia) {
+    public Leaf(char caractere, int frequencia) {
         super(frequencia);
         this.caractere = caractere;
     }
@@ -16,7 +16,7 @@ public class Leaf extends Node {
     public String toString() {
         return "Leaf{" +
                 "Char: " + caractere + "" +
-                "Freq: " + getFrequencia() + "" +
+                " Freq: " + getFrequencia() + "" +
                 '}';
     }
 }

@@ -19,8 +19,8 @@ public class Main {
 
 
         StringBuilder jaEncontrados = new StringBuilder();
-        Map<Object,Integer> tabelaFreq = new HashMap<Object, Integer>();
-        Map<Object,Integer> newTabelaFreq = new HashMap<Object, Integer>();
+        Map<Character,Integer> tabelaFreq = new HashMap<Character, Integer>();
+        Map<Character,Integer> newTabelaFreq = new HashMap<Character, Integer>();
         FrequenciaTexto freq =  new FrequenciaTexto();
 
         int counter = 0;
@@ -36,6 +36,9 @@ public class Main {
 
             Node x = arv.criarArvore(newTabelaFreq);
             System.out.println(x);
+            arv.setRaiz(x);
+            System.out.println(arv.encode(x, ""));
+
 
 
         }catch (IOException e){

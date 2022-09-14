@@ -1,6 +1,6 @@
 package Tree;
 
-public class Node implements Comparable<Node> {
+public class Node extends Tree implements Comparable<Node> {
     private int frequencia;
     private Node esquerda, direita;
 
