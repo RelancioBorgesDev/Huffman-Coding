@@ -1,8 +1,18 @@
-package Tree;
+package HuffmanTree;
 
 public class Node extends Tree implements Comparable<Node> {
     private int frequencia;
     private Node esquerda, direita;
+    private char caractere;
+
+    public char getCaractere() {
+        return caractere;
+    }
+
+    public Node(int frequencia, char caractere) {
+        this.frequencia = frequencia;
+        this.caractere = caractere;
+    }
 
     public void setFrequencia(int frequencia) {
         this.frequencia = frequencia;
@@ -19,7 +29,14 @@ public class Node extends Tree implements Comparable<Node> {
     public Node() {
     }
 
+    public Node(Node esquerda, Node direita, int frequencia, char ch) {
+        super();
+        this.esquerda = esquerda;
+        this.direita = direita;
+        this.frequencia = frequencia;
+    }
     public Node(Node esquerda, Node direita, int frequencia) {
+        super();
         this.esquerda = esquerda;
         this.direita = direita;
         this.frequencia = frequencia;
@@ -46,6 +63,7 @@ public class Node extends Tree implements Comparable<Node> {
     public void setDireita(Node direita) {
         this.direita = direita;
     }
+
 
     @Override
     public String toString() {

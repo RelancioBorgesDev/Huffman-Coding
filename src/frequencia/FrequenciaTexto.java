@@ -1,10 +1,29 @@
 package frequencia;
 
-import Tree.Node;
-
 import java.util.*;
 
 public class FrequenciaTexto  {
+    public void imprimeMapa(Map<Character, Integer> mp ){
+        Map<Character, Integer> mapaOrdenado = mapaDeFrequenciaOrdenado(mp);
+        System.out.println("------------TABELA DE FREQUENCIA-------------");
+        System.out.printf("%10s %20s", "Caractere", "Frequencia");
+        System.out.println();
+
+
+        for (Map.Entry<Character, Integer> entry : mapaOrdenado.entrySet()) {
+            char charzinho = entry.getKey();
+            Integer valor = entry.getValue();
+            System.out.format("%10s %20s",charzinho, valor);
+            System.out.println();
+        }
+        System.out.println("--------------------------------------------");
+
+    }
+    public Map<Character, Integer> mapaDeFrequenciaOrdenado (Map<Character, Integer> hm){
+        return ordenarPorValor(hm);
+    }
+
+
     public Map<Character, Integer> frequenciaTexto (String line, char[] arrayLine, int counter, StringBuilder jaEncontrados, Map<Character, Integer> tabelaFreq) {
         for (int i = 0; i < arrayLine.length; i++){
             for (int j = 0; j < arrayLine.length; j++) {
@@ -21,6 +40,8 @@ public class FrequenciaTexto  {
         }
         return tabelaFreq;
     }
+
+
 
     public static Map<Character, Integer> ordenarPorValor(Map<Character, Integer> hm)
     {

@@ -1,4 +1,4 @@
-package Tree;
+package HuffmanTree;
 
 public class Leaf extends Node {
     protected final char caractere;
@@ -8,7 +8,7 @@ public class Leaf extends Node {
     }
 
     public Leaf(char caractere, int frequencia) {
-        super(frequencia);
+        super(frequencia, caractere);
         this.caractere = caractere;
     }
 
