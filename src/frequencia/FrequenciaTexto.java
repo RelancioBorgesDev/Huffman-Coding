@@ -24,9 +24,9 @@ public class FrequenciaTexto  {
     }
 
 
-    public Map<Character, Integer> frequenciaTexto (String line, char[] arrayLine, int counter, StringBuilder jaEncontrados, Map<Character, Integer> tabelaFreq) {
-        for (int i = 0; i < arrayLine.length; i++){
-            for (int j = 0; j < arrayLine.length; j++) {
+    public Map<Character, Integer> frequenciaTexto (String line, int counter, StringBuilder jaEncontrados, Map<Character, Integer> tabelaFreq) {
+        for (int i = 0; i < line.split("").length; i++){
+            for (int j = 0; j < line.split("").length; j++) {
                 if(line.charAt(i) == line.charAt(j)){
                     counter++;
                 }
@@ -34,13 +34,21 @@ public class FrequenciaTexto  {
             char c = line.charAt(i);
             if (!jaEncontrados.toString().contains("" + c)) {
                 jaEncontrados.append(c);
+
                 tabelaFreq.put(c, counter);
             }
             counter = 0;
         }
         return tabelaFreq;
     }
-
+    public char[] mapaDesordenado (String line) {
+        char [] charMap = new char[line.length()];
+        for (int i = 0; i < line.split("").length; i++){
+             char c = line.charAt(i);
+            charMap[i] = c;
+        }
+        return charMap;
+    }
 
 
     public static Map<Character, Integer> ordenarPorValor(Map<Character, Integer> hm)

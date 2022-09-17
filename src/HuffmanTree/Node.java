@@ -5,8 +5,12 @@ public class Node extends Tree implements Comparable<Node> {
     private Node esquerda, direita;
     private char caractere;
 
-    public char getCaractere() {
-        return caractere;
+    //Construtores
+    public Node() {
+    }
+
+    public Node(int frequencia) {
+        this.frequencia = frequencia;
     }
 
     public Node(int frequencia, char caractere) {
@@ -14,6 +18,21 @@ public class Node extends Tree implements Comparable<Node> {
         this.caractere = caractere;
     }
 
+    public Node(Node esquerda, Node direita, int frequencia, char ch) {
+        super();
+        this.esquerda = esquerda;
+        this.direita = direita;
+        this.frequencia = frequencia;
+    }
+    public Node(Node esquerda, Node direita) {
+        super();
+        this.esquerda = esquerda;
+        this.direita = direita;
+        this.frequencia = esquerda.getFrequencia() + direita.getFrequencia();
+    }
+
+
+    //Getters e Setters
     public void setFrequencia(int frequencia) {
         this.frequencia = frequencia;
     }
@@ -26,34 +45,8 @@ public class Node extends Tree implements Comparable<Node> {
         return direita;
     }
 
-    public Node() {
-    }
-
-    public Node(Node esquerda, Node direita, int frequencia, char ch) {
-        super();
-        this.esquerda = esquerda;
-        this.direita = direita;
-        this.frequencia = frequencia;
-    }
-    public Node(Node esquerda, Node direita, int frequencia) {
-        super();
-        this.esquerda = esquerda;
-        this.direita = direita;
-        this.frequencia = frequencia;
-    }
-
-    public Node(int frequencia) {
-        this.frequencia = frequencia;
-    }
-
-
-    @Override
-    public int compareTo(Node node) {
-        return getFrequencia() - node.getFrequencia();
-    }
-
-    public int getFrequencia() {
-        return frequencia;
+    public char getCaractere() {
+        return caractere;
     }
 
     public void setEsquerda(Node esquerda) {
@@ -64,7 +57,15 @@ public class Node extends Tree implements Comparable<Node> {
         this.direita = direita;
     }
 
+    //Sobrescrita de métodos
+    @Override
+    public int compareTo(Node node) {
+        return getFrequencia() - node.getFrequencia();
+    }
 
+    public int getFrequencia() {
+        return frequencia;
+    }
     @Override
     public String toString() {
         return "Esquerda: " + getEsquerda() + "\n" +

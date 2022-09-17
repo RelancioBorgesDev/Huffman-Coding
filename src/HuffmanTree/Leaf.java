@@ -1,15 +1,15 @@
 package HuffmanTree;
 
 public class Leaf extends Node {
-    protected final char caractere;
-
-    public char getCaractere() {
-        return caractere;
-    }
-
+    protected char caractere;
+    //Construtor
     public Leaf(char caractere, int frequencia) {
         super(frequencia, caractere);
         this.caractere = caractere;
+    }
+    //Getter e Setter
+    public char getCaractere() {
+        return caractere;
     }
 
     @Override
