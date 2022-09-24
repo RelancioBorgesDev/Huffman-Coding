@@ -5,54 +5,79 @@ import HuffmanTree.Tree;
 import HuffmanTree.Node;
 import frequencia.FrequenciaTexto;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 /**/
 public class Main {
     public static void main(String[] args) {
         String path = "/media/relanciosantos/RELANCIO TR/ProjetoHuffmanEnari/src/texto.txt";
-
         StringBuilder jaEncontrados = new StringBuilder();
-        Map<Character,Integer> tabelaFreq = new HashMap<Character, Integer>();
+        Map<Character,Integer> tabelaFreq = new HashMap<>();
         FrequenciaTexto freq =  new FrequenciaTexto();
-
         int counter = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = br.readLine();
             System.out.println("Texto Original: " + line);
-            char[] charArray = line.toCharArray();
             Tree arvore = new Tree();
             Node arvoreDeHuffman;
             HashMap<Character, String> hm;
 
-            arvoreDeHuffman = arvore.criarArvore(freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line, counter, jaEncontrados, tabelaFreq)));
+            arvoreDeHuffman = arvore.criarArvore(freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line,counter, jaEncontrados, tabelaFreq)));
+            hm = arvore.mapaBinario(arvoreDeHuffman, "", new HashMap<>());
+            freq.imprimeMapa(freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line,counter, jaEncontrados, tabelaFreq )));
+            arvore.imprimeMapaCodigoBinario(hm);
 
-            hm = arvore.encodeMap(arvoreDeHuffman, "", new HashMap<>());
+            System.out.println("Codigo binario palavra compactada codificada: " + arvore.mapaBinarioCompleto(hm));
+            tabelaFreq = freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line,  counter, jaEncontrados, tabelaFreq));
+            
+            ArrayList <String> arrayBinarioFraseOriginal = arvore.fraseOriginalBinario(arvoreDeHuffman, "", new ArrayList<>(), freq.mapaDesordenado(line),0, tabelaFreq);
+            System.out.println("Codigo binario palavra original codificada: " + arvore.fraseOriginalBinarioCompleto(arrayBinarioFraseOriginal));
 
-            freq.imprimeMapa(freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line, counter, jaEncontrados, tabelaFreq)));
+           String hexaDecimal = arvore.binarioParaHexa(arvore.fraseOriginalBinarioCompleto(arrayBinarioFraseOriginal));
+           criarArquivo(hexaDecimal);
+           String codigoBinario = arvore.hexaParaBinario(descompactarArquivoTxt());
+           String stringDecodificada = arvore.decode(hm, codigoBinario, new StringBuilder(), new StringBuilder(), line);
+           System.out.println("Palavra decodificada: " +  stringDecodificada);
 
-            arvore.imprimeMapa(hm);
+           if(Objects.equals(stringDecodificada, line)){
+               System.out.println("As String são iguais");
+           }
 
-            System.out.println("Codigo binario palavra compactada codificada: " + arvore.fullEncodeMap(hm));
-
-            tabelaFreq = freq.mapaDeFrequenciaOrdenado(freq.frequenciaTexto(line, counter, jaEncontrados, tabelaFreq));
-
-            String [] x = arvore.encodeOriginalStringArray(arvoreDeHuffman, "", new HashMap<>(), new String[line.length()], freq.mapaDesordenado(line),0, tabelaFreq);
-            System.out.println("Codigo binario palavra original codificada: " + arvore.fullOriginalStringEncodeMap(x));
-
-            String fraseDecodificada = arvore.decode(x, hm);
-            System.out.println("A frase decodificada é : " + fraseDecodificada);
-
-            if(Objects.equals(fraseDecodificada, line)){
-                System.out.println("As frases são identicas.");
-            }
 
         }catch (IOException e){
             System.out.println("Erro" + e.getMessage());
         }
     }
+    //Metodo que cria arquivo compactado
+    public static void criarArquivo(String hexaDecimal){
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ArquivoCompactado.txt"));
+            for(String hexa : hexaDecimal.split("")){
+                writer.write(hexa);
+            }
+            writer.close();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    //Metodo que lê o codigo binario do arquivo compactado e retorna a string binaria
+    public static String descompactarArquivoTxt(){
+        StringBuilder novaString = new StringBuilder();
+        String path = "/media/relanciosantos/RELANCIO TR/ProjetoHuffmanEnari/ArquivoCompactado.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line = reader.readLine();
+            while (line != null) {
+                novaString.append(line);
+                line = reader.readLine();
+            }
+            reader.close();
+            return novaString.toString();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+        return novaString.toString();
+    }
+
 }
