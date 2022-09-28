@@ -5,7 +5,7 @@
  - Este projeto foi desenvolvido durante o 6º Semestre do curso de Engenharia da Computação, na matéria de estrutura de dados. O objetivo do projeto é utilizar o algoritimo de Huffman (Algoritimo de Codificação), para ler o texto que está no arquivo texto.txt, comprimir ele e gerar um outro arquivo "comprimido" (ArquivoCompactado.txt).
 
 
-##**🧑🏻‍💻 Estruturas de dados utilizadas no projeto**
+## **🧑🏻‍💻 Estruturas de dados utilizadas no projeto**
 
 - Trees
 - HashMap
@@ -14,7 +14,7 @@
 - Lists
 - Linked Lists
 
-##**📝 Texto original (texto.txt)**
+## **📝 Texto original (texto.txt)**
 ***'the quick brown fox jumps over the lazy dog this is a sample text that we will use when we build up a table we will only handle lower case letters and no punctuation symbols the frequency will of course not represent english but it is probably not that far off'***
 
 ##**📝 Texto Compactado em Hexadecima (ArquivoCompactado.txt)**
