@@ -11,7 +11,7 @@ import java.util.*;
 /**/
 public class Main {
     public static void main(String[] args) {
-        String path = "/media/relanciosantos/RELANCIO TR/ProjetoHuffmanEnari/src/texto.txt";
+        String path = "E://ProjetoHuffmanEnari//src//texto.txt";
         StringBuilder jaEncontrados = new StringBuilder();
         Map<Character,Integer> tabelaFreq = new HashMap<>();
         FrequenciaTexto freq =  new FrequenciaTexto();
@@ -38,7 +38,7 @@ public class Main {
            String hexaDecimal = arvore.binarioParaHexa(arvore.fraseOriginalBinarioCompleto(arrayBinarioFraseOriginal));
            criarArquivo(hexaDecimal);
            String codigoBinario = arvore.hexaParaBinario(descompactarArquivoTxt());
-           String stringDecodificada = arvore.decode(hm, codigoBinario, new StringBuilder(), new StringBuilder(), line);
+           String stringDecodificada = arvore.decode(hm, codigoBinario, new StringBuilder(), new StringBuilder(), freq.mapaDesordenado(line));
            System.out.println("Palavra decodificada: " +  stringDecodificada);
 
            if(Objects.equals(stringDecodificada, line)){
@@ -65,7 +65,7 @@ public class Main {
     //Metodo que lê o codigo binario do arquivo compactado e retorna a string binaria
     public static String descompactarArquivoTxt(){
         StringBuilder novaString = new StringBuilder();
-        String path = "/media/relanciosantos/RELANCIO TR/ProjetoHuffmanEnari/ArquivoCompactado.txt";
+        String path = "E:\\ProjetoHuffmanEnari\\ArquivoCompactado.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line = reader.readLine();
             while (line != null) {

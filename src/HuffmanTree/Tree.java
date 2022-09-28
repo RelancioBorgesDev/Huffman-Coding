@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Tree {
     public Tree() {
-
     }
 
     // Fila de Folhas
@@ -120,7 +119,7 @@ public class Tree {
         for (int i = 0; i < fraseOriginalBinarioCompleto.length(); i += 4) {
             arrayDe4Bits.add(fraseOriginalBinarioCompleto.substring(i, Math.min(i + 4,fraseOriginalBinarioCompleto.length())));
         }
-
+        System.out.println(arrayDe4Bits);
         for(String string4Bits: arrayDe4Bits){
             for(Map.Entry<String, String> entry: mapaBinarioHexa.entrySet()){
                 if(Objects.equals(string4Bits, entry.getKey())){
@@ -169,13 +168,13 @@ public class Tree {
 
 
     //Decode de binario para String
-    public String decode(HashMap<Character, String> mapa, String fraseOriginalBinarioCompleto, StringBuilder codigo, StringBuilder fraseOriginal, String line){
+    public String decode(HashMap<Character, String> mapa, String fraseOriginalBinarioCompleto, StringBuilder codigo, StringBuilder fraseOriginal, char[] mapaDesordenado){
         codigo.append(fraseOriginalBinarioCompleto.split("")[0]);
         for(int i = 1 ; i <= fraseOriginalBinarioCompleto.length(); i++){
             for(Map.Entry<Character, String> entry: mapa.entrySet()){
                 if(Objects.equals(entry.getValue(), codigo.toString())){
                     fraseOriginal.append(entry.getKey());
-                    if(fraseOriginal.length() == line.length()){
+                    if(fraseOriginal.length() == mapaDesordenado.length){
                         return fraseOriginal.toString();
                     }
                     codigo.delete(0, codigo.length());

@@ -46,6 +46,7 @@ public class FrequenciaTexto  {
              char c = line.charAt(i);
             charMap[i] = c;
         }
+        System.out.println(charMap.length);
         return charMap;
     }
 
